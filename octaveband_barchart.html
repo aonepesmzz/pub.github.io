@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Filter');
+        data.addColumn('number', 'Lavg');
+        data.addColumn('number', 'Leq');
+        data.addRows([["",56.2,101],
+                    ["16.00 Hz",12.6,30],
+                    ["31.5 Hz",26.3,44.4],
+                    ["63 Hz",33.3,55.4],
+                    ["125 Hz",38.9,74.1],
+                    ["250 Hz",43.1,77.2],
+                    ["500 Hz",50.9,92.4],
+                    ["1.00 kHz",49.6,89.1],
+                    ["2.00 kHz",49.1,90.7],
+                    ["4.00 kHz",47.8,90.6],
+                    ["8.00 kHz",43,91.6],
+                    ["16.00 kHz",39.1,84.7]]);
+
+        // Set chart options
+        var options = {'title':'Filter Summary',
+                        'width':819,
+                        'height':366,
+                        'hAxis': {'title': '', 'slantedTextAngle': 90, 'slantedText': true },
+                        'vAxis': {'title':'dB','minValue': 0, 'format': 'decimal'}};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+  </body>
+</html>
